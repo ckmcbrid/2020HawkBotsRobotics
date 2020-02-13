@@ -9,9 +9,16 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
-import frc.robot.commands.ExampleCommand;
-import frc.robot.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
+import frc.robot.subsystems.*;
+import frc.robot.commands.*;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.RunCommand;
+
+import frc.robot.Constants.OIConstants;
+
+import static edu.wpi.first.wpilibj.XboxController.Button;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 /**
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
@@ -25,12 +32,21 @@ public class RobotContainer {
 
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
 
+  // Define Subsystems
+  private final BallFeed ballFeedSubsystem = new BallFeed();
+  private final BarrelAngle barrelAngleSubsystem = new BarrelAngle();
+  private final DriveBase driveBaseSubsystem = new DriveBase();
+  private final ScissorLift scissorLiftSubsystem = new ScissorLift();
+  private final Shooter shooterSubsystem = new Shooter();
 
+  // Initialize Xbox Port
+  XboxController driverController = new XboxController(Constants.XBOX_PORT);
 
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
    */
   public RobotContainer() {
+
     // Configure the button bindings
     configureButtonBindings();
   }
