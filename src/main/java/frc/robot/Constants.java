@@ -50,7 +50,11 @@ public final class Constants {
         
         // Ball Feed
         public final static int BALL_FEED_PORT = Constants.RoboRIOConstants.PWM_PORT_5;
-        public final static boolean BALL_FEED_INIVERTED = false;
+        public final static boolean BALL_FEED_INVERTED = false;
+
+        // Shooter Angle
+        public final static int ANGLE_PORT = Constants.RoboRIOConstants.PWM_PORT_8;
+        public final static boolean ANGLE_INVERTED = false;
 
         // Shooter Wheels
         public final static int LEFT_SHOOTER_PORT = Constants.RoboRIOConstants.PWM_PORT_6;

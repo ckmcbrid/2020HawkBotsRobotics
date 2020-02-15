@@ -28,16 +28,13 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
  * (including subsystems, commands, and button mappings) should be declared here.
  */
 public class RobotContainer {
-  // The robot's subsystems and commands are defined here...
-  private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
-
-  private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
-
+  
   // Define Subsystems
-  private final BarrelAngle barrelAngleSubsystem = new BarrelAngle();
+  //private final BarrelAngle barrelAngleSubsystem = new BarrelAngle();
   private final DriveBase driveBaseSubsystem = new DriveBase();
   private final ScissorLift scissorLiftSubsystem = new ScissorLift();
   private final Shooter shooterSubsystem = new Shooter();
+  private final BarrelAngle barrelAngleSubsystem = new BarrelAngle();
 
   // Initialize Xbox Port
   XboxController driverController = new XboxController(Constants.OIConstants.XBOX_PORT);
@@ -67,7 +64,7 @@ public class RobotContainer {
   private void configureButtonBindings() {
 
     // A button activates shooter
-    new JoystickButton(driverController, OIConstants.A).whenPressed(() -> shooterSubsystem. , shooterSubsystem);
+    //new JoystickButton(driverController, OIConstants.A).whenPressed(() -> shooterSubsystem. , shooterSubsystem);
 
 
     // B button sucks balls
@@ -81,12 +78,6 @@ public class RobotContainer {
     
     // LB and RB articulate ScissorLift
 
-
-    // Left Stick drives forwards and backwards.
-    // Right Stick turns left and right
-
-
-
   }
 
 
@@ -97,6 +88,6 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-    return m_autoCommand;
+    return new InstantCommand();
   }
 }

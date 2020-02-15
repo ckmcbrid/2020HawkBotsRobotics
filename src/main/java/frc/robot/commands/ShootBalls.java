@@ -12,11 +12,32 @@ public class ShootBalls extends CommandBase {
    *
    * @param subsystem The subsystem used by this command.
    */
-  public ExampleCommand(ExampleSubsystem subsystem) {
+  public ShootBalls(Shooter subsystem) {
     shooterSubsystem = subsystem;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(subsystem);
   }
+
+    // Called when the command is initially scheduled.
+    @Override
+    public void initialize() {
+    }
+
+    @Override
+    public void execute() {
+        shooterSubsystem.shoot();
+    }
+
+    // Called once the command ends or is interrupted.
+    @Override
+    public void end(boolean interrupted) {
+    }
+
+    // Returns true when the command should end.
+    @Override
+    public boolean isFinished() {
+        return false;
+    }
 
 
 

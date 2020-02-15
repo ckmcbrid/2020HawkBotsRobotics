@@ -7,6 +7,7 @@
 
 package frc.robot.subsystems;
 
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import edu.wpi.first.wpilibj.VictorSP;
@@ -26,7 +27,6 @@ public class DriveBase extends SubsystemBase {
 
     public DriveBase() {
 
-
         // Left Motors
         this.frontLeftMotor = new VictorSP(Constants.MotorConstants.FRONT_LEFT_DRIVE_MOTOR_PORT);
         this.rearLeftMotor = new VictorSP(Constants.MotorConstants.REAR_LEFT_DRIVE_MOTOR_PORT);
@@ -35,26 +35,26 @@ public class DriveBase extends SubsystemBase {
         this.frontRightMotor = new VictorSP(Constants.MotorConstants.FRONT_RIGHT_DRIVE_MOTOR_PORT);
         this.rearLeftMotor = new VictorSP(Constants.MotorConstants.REAR_RIGHT_DRIVE_MOTOR_PORT);
 
-        SpeedControllerGroup leftMotors = new SpeedControllerGroup(frontLeftMotor, rearLeftMotor);
-        SpeedControllerGroup rightMotors = new SpeedControllerGroup(frontRightMotor, rearRightMotor);
+        SpeedControllerGroup leftMotors = new SpeedControllerGroup(this.frontLeftMotor, this.rearLeftMotor);
+        SpeedControllerGroup rightMotors = new SpeedControllerGroup(this.frontRightMotor, this.rearRightMotor);
 
         this.driveTrain = new DifferentialDrive(leftMotors, rightMotors);
     }
 
     //@Override
-    /*
     public void initDefaultCommand() {
-        DriveBase.setDefaultCommand(new DriveJoystick();
+       new InstantCommand();
     }
-    */
+    
 
     public void arcadeDrive(double speed, double rotation) {
-        this.arcadeDrive(speed, rotation, true);
+        arcadeDrive(speed, rotation, true);
     }
 
     public void arcadeDrive(double speed, double rotation, boolean squareInputs) {
         this.driveTrain.arcadeDrive(speed, rotation, squareInputs);
-    }  
+    }
+
 
     @Override
     public void periodic() {

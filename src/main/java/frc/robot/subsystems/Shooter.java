@@ -3,7 +3,6 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import edu.wpi.first.wpilibj.VictorSP;
-import frc.robot.commands.ShootBalls;
 
 public class Shooter extends SubsystemBase {
 
@@ -23,7 +22,7 @@ public class Shooter extends SubsystemBase {
 
     // Initialize Ball Feed Motor
     this.ballFeedMotor = new VictorSP(Constants.MotorConstants.BALL_FEED_PORT);
-    this.ballFeedMotor.setInverted(Constants.MotorConstants.BALL_FEED_INIVERTED);
+    this.ballFeedMotor.setInverted(Constants.MotorConstants.BALL_FEED_INVERTED);
 
   }
 
@@ -37,6 +36,10 @@ public class Shooter extends SubsystemBase {
     leftMotor.set(-1.0);
     rightMotor.set(-1.0);
     ballFeedMotor.set(-1.0);
+  }
+
+  public void wheelSpin() {
+    leftMotor.set(1.0);
   }
 
   /*
