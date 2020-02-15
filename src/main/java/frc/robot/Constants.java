@@ -17,8 +17,6 @@ package frc.robot;
  */
 public final class Constants {
 
-    public static final int XBOX_PORT = 0;
-
     // Drive motor scaling
     // Scaling factor to slow the motors down (e.g. 0.7 is 70% of max power)
     public final static double DRIVE_SPEED_SCALING_FACTOR = 0.7;
@@ -65,6 +63,8 @@ public final class Constants {
     public static final class OIConstants {
         // http://team358.org/files/programming/ControlSystem2009-/XBoxControlMapping.jpg
 
+        public static final int XBOX_PORT = 0;
+        
         // Xbox controller button mappings
         public final static int A = 1;
         public final static int B = 2;

@@ -15,6 +15,7 @@ import frc.robot.commands.*;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 
+import frc.robot.Constants;
 import frc.robot.Constants.OIConstants;
 
 import static edu.wpi.first.wpilibj.XboxController.Button;
@@ -33,14 +34,13 @@ public class RobotContainer {
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
 
   // Define Subsystems
-  private final BallFeed ballFeedSubsystem = new BallFeed();
   private final BarrelAngle barrelAngleSubsystem = new BarrelAngle();
   private final DriveBase driveBaseSubsystem = new DriveBase();
   private final ScissorLift scissorLiftSubsystem = new ScissorLift();
   private final Shooter shooterSubsystem = new Shooter();
 
   // Initialize Xbox Port
-  XboxController driverController = new XboxController(Constants.XBOX_PORT);
+  XboxController driverController = new XboxController(Constants.OIConstants.XBOX_PORT);
 
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
@@ -49,6 +49,13 @@ public class RobotContainer {
 
     // Configure the button bindings
     configureButtonBindings();
+
+    driveBaseSubsystem.setDefaultCommand(new RunCommand(() -> 
+    driveBaseSubsystem.arcadeDrive(
+    driverController.getRawAxis(OIConstants.LEFT_STICK_Y_AXIS), 
+    driverController.getRawAxis(OIConstants.LEFT_STICK_X_AXIS)
+    ), driveBaseSubsystem));
+
   }
 
   /**
@@ -58,6 +65,28 @@ public class RobotContainer {
    * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
+
+    // A button activates shooter
+    new JoystickButton(driverController, OIConstants.A).whenPressed(() -> shooterSubsystem. , shooterSubsystem);
+
+
+    // B button sucks balls
+
+    
+    // Y Button Spins Wheel 
+
+    
+    // LT and RT articulate barrel
+
+    
+    // LB and RB articulate ScissorLift
+
+
+    // Left Stick drives forwards and backwards.
+    // Right Stick turns left and right
+
+
+
   }
 
 

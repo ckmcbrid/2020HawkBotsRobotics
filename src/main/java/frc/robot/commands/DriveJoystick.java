@@ -1,42 +1,41 @@
 package frc.robot.commands;
 
-import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.DriveBase;
+import java.util.function.DoubleSupplier;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Robot;
 
 public class DriveJoystick extends CommandBase {
+    @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
+    private final DriveBase driveBase;
+    private final DoubleSupplier driveForward;
+    private final DoubleSupplier driveRotate;
     
-    public DriveJoystick() {
-        // Use requires() here to declare subsystem dependencies
-        requires(Robot.driveBase);
+    public DriveJoystick(DriveBase subsystem, DoubleSupplier forward, DoubleSupplier rotation) {
+        driveBase = subsystem;
+        driveForward = forward;
+        driveRotate = rotation;
+        addRequirements(driveBase);
     }
 
-    // Called just before this Command runs the first time
+    // Called when the command is initially scheduled.
     @Override
-    protected void initialize() {
+    public void initialize() {
     }
 
-    // Called repeatedly when this Command is scheduled to run
+    // Called every time the scheduler runs while the command is scheduled.
     @Override
-    protected void execute() {
-        Robot.driveBase.arcadeDrive(Robot.oi.getDriveSpeed(), Robot.oi.getDriveRotation());
+    public void execute() {
+        driveBase.arcadeDrive(driveForward.getAsDouble(), driveRotate.getAsDouble());
     }
 
-    // Make this return true when this Command no longer needs to run execute()
+    // Called once the command ends or is interrupted.
     @Override
-    protected boolean isFinished() {
+    public void end(boolean interrupted) {
+    }
+
+    // Returns true when the command should end.
+    @Override
+    public boolean isFinished() {
         return false;
-    }
-
-    // Called once after isFinished returns true
-    @Override
-    protected void end() {
-    }
-
-    // Called when another command which requires one or more of the same
-    // subsystems is scheduled to run
-    @Override
-    protected void interrupted() {
     }
 }

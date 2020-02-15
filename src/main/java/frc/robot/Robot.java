@@ -37,8 +37,6 @@ public class Robot extends TimedRobot {
   public static ScissorLift scissorLift = new ScissorLift();
   public static Shooter shooter = new Shooter();
 
-  // Initialize OI
-
 
 
   /**

@@ -13,8 +13,10 @@ import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import frc.robot.Constants;
+import frc.robot.commands.DriveJoystick;
 
 public class DriveBase extends SubsystemBase {
+    
     public DifferentialDrive driveTrain;
 
     private VictorSP frontLeftMotor;
@@ -22,25 +24,40 @@ public class DriveBase extends SubsystemBase {
     private VictorSP frontRightMotor;
     private VictorSP rearRightMotor;
 
-  public DriveBase() {
+    public DriveBase() {
 
 
-    // Left Motors
-    this.frontLeftMotor = new VictorSP(Constants.MotorConstants.FRONT_LEFT_DRIVE_MOTOR_PORT);
-    this.rearLeftMotor = new VictorSP(Constants.MotorConstants.REAR_LEFT_DRIVE_MOTOR_PORT);
+        // Left Motors
+        this.frontLeftMotor = new VictorSP(Constants.MotorConstants.FRONT_LEFT_DRIVE_MOTOR_PORT);
+        this.rearLeftMotor = new VictorSP(Constants.MotorConstants.REAR_LEFT_DRIVE_MOTOR_PORT);
 
-    // Right Motors
-    this.frontRightMotor = new VictorSP(Constants.MotorConstants.FRONT_RIGHT_DRIVE_MOTOR_PORT);
-    this.rearLeftMotor = new VictorSP(Constants.MotorConstants.REAR_RIGHT_DRIVE_MOTOR_PORT);
+        // Right Motors
+        this.frontRightMotor = new VictorSP(Constants.MotorConstants.FRONT_RIGHT_DRIVE_MOTOR_PORT);
+        this.rearLeftMotor = new VictorSP(Constants.MotorConstants.REAR_RIGHT_DRIVE_MOTOR_PORT);
 
-    SpeedControllerGroup leftMotors = new SpeedControllerGroup(frontLeftMotor, rearLeftMotor);
-    SpeedControllerGroup rightMotors = new SpeedControllerGroup(frontRightMotor, rearRightMotor);
+        SpeedControllerGroup leftMotors = new SpeedControllerGroup(frontLeftMotor, rearLeftMotor);
+        SpeedControllerGroup rightMotors = new SpeedControllerGroup(frontRightMotor, rearRightMotor);
 
-    this.driveTrain = new DifferentialDrive(leftMotors, rightMotors);
-  }
+        this.driveTrain = new DifferentialDrive(leftMotors, rightMotors);
+    }
 
-  @Override
-  public void periodic() {
-    // This method will be called once per scheduler run
-  }
+    //@Override
+    /*
+    public void initDefaultCommand() {
+        DriveBase.setDefaultCommand(new DriveJoystick();
+    }
+    */
+
+    public void arcadeDrive(double speed, double rotation) {
+        this.arcadeDrive(speed, rotation, true);
+    }
+
+    public void arcadeDrive(double speed, double rotation, boolean squareInputs) {
+        this.driveTrain.arcadeDrive(speed, rotation, squareInputs);
+    }  
+
+    @Override
+    public void periodic() {
+        // This method will be called once per scheduler run
+    }
 }
