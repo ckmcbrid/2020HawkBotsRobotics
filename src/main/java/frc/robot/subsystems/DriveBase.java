@@ -7,14 +7,12 @@
 
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import frc.robot.Constants;
-import frc.robot.commands.DriveJoystick;
 
 public class DriveBase extends SubsystemBase {
     
@@ -33,17 +31,12 @@ public class DriveBase extends SubsystemBase {
 
         // Right Motors
         this.frontRightMotor = new VictorSP(Constants.MotorConstants.FRONT_RIGHT_DRIVE_MOTOR_PORT);
-        this.rearLeftMotor = new VictorSP(Constants.MotorConstants.REAR_RIGHT_DRIVE_MOTOR_PORT);
+        this.rearRightMotor = new VictorSP(Constants.MotorConstants.REAR_RIGHT_DRIVE_MOTOR_PORT);
 
         SpeedControllerGroup leftMotors = new SpeedControllerGroup(this.frontLeftMotor, this.rearLeftMotor);
         SpeedControllerGroup rightMotors = new SpeedControllerGroup(this.frontRightMotor, this.rearRightMotor);
 
         this.driveTrain = new DifferentialDrive(leftMotors, rightMotors);
-    }
-
-    //@Override
-    public void initDefaultCommand() {
-       new InstantCommand();
     }
     
 

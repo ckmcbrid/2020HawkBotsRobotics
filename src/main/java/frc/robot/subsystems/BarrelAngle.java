@@ -9,15 +9,15 @@ public class BarrelAngle extends SubsystemBase {
 
   public BarrelAngle() {
     this.motor = new VictorSP(Constants.MotorConstants.ANGLE_PORT);
-    this.motor.setInverted(Constants.MotorConstants.ANGLE_INVERTED);
+    //this.motor.setInverted(Constants.MotorConstants.ANGLE_INVERTED);
   }
 
   public void angleUp() {
-    motor.set(1.0);
+    motor.set(0.7);
   }
 
   public void angleDown() {
-    motor.set(-1.0);
+    motor.set(-0.7);
   }
 
   @Override

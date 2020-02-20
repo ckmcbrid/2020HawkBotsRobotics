@@ -15,7 +15,7 @@ public class DriveJoystick extends CommandBase {
         driveBase = subsystem;
         driveForward = forward;
         driveRotate = rotation;
-        addRequirements(driveBase);
+        addRequirements(subsystem);
     }
 
     // Called when the command is initially scheduled.

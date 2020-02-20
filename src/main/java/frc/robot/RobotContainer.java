@@ -16,7 +16,6 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 
 import frc.robot.Constants;
-import frc.robot.Constants.OIConstants;
 
 import static edu.wpi.first.wpilibj.XboxController.Button;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
@@ -47,11 +46,12 @@ public class RobotContainer {
     // Configure the button bindings
     configureButtonBindings();
 
-    driveBaseSubsystem.setDefaultCommand(new RunCommand(() -> 
-    driveBaseSubsystem.arcadeDrive(
-    driverController.getRawAxis(OIConstants.LEFT_STICK_Y_AXIS), 
-    driverController.getRawAxis(OIConstants.LEFT_STICK_X_AXIS)
-    ), driveBaseSubsystem));
+    driveBaseSubsystem.setDefaultCommand(
+      new DriveJoystick(
+        driveBaseSubsystem,
+        () -> driverController.getRawAxis(Constants.OIConstants.LEFT_STICK_Y_AXIS),
+        () -> driverController.getRawAxis(Constants.OIConstants.LEFT_STICK_X_AXIS)
+    ));
 
   }
 
@@ -64,19 +64,35 @@ public class RobotContainer {
   private void configureButtonBindings() {
 
     // A button activates shooter
-    //new JoystickButton(driverController, OIConstants.A).whenPressed(() -> shooterSubsystem. , shooterSubsystem);
+    new JoystickButton(driverController, Constants.OIConstants.A)
+                      .whenPressed(new InstantCommand(shooterSubsystem::shoot, shooterSubsystem));
 
+                      //() -> shooterSubsystem.shoot(), shooterSubsystem)
 
     // B button sucks balls
-
+    new JoystickButton(driverController, Constants.OIConstants.B)
+                      .whenPressed(() -> shooterSubsystem.suck(), shooterSubsystem);
     
     // Y Button Spins Wheel 
-
+    new JoystickButton(driverController, Constants.OIConstants.Y)
+                      .whenPressed(() -> shooterSubsystem.wheelSpin(), shooterSubsystem);
     
-    // LT and RT articulate barrel
+    // Rs articulate barrel
+    barrelAngleSubsystem.setDefaultCommand(
+      new ArticulateBarrel(
+        barrelAngleSubsystem,
+        () -> driverController.getRawAxis(Constants.OIConstants.LEFT_TRIGGER),
+        () -> driverController.getRawAxis(Constants.OIConstants.RIGHT_TRIGGER)
+    ));
 
     
     // LB and RB articulate ScissorLift
+    scissorLiftSubsystem.setDefaultCommand(
+      new ArticulateScissorLift(
+        scissorLiftSubsystem,
+        () -> driverController.getRawAxis(Constants.OIConstants.RIGHT_STICK_X_AXIS),
+        () -> driverController.getRawAxis(Constants.OIConstants.RIGHT_STICK_Y_AXIS)
+    ));
 
   }
 
