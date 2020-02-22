@@ -27,15 +27,15 @@ public class Shooter extends SubsystemBase {
   }
 
   public void shoot() {
-    leftMotor.set(-0.5);
-    rightMotor.set(0.5);
-    ballFeedMotor.set(-0.7);
+    //leftMotor.set(-0.2);
+    //rightMotor.set(0.2);
+    ballFeedMotor.set(-0.2);
   }
 
   public void suck() {
-    leftMotor.set(0.5);
-    rightMotor.set(-0.5);
-    ballFeedMotor.set(0.7);
+    //leftMotor.set(0.2);
+    //rightMotor.set(-0.2);
+    ballFeedMotor.set(0.2);
   }
 
   public void wheelSpin() {

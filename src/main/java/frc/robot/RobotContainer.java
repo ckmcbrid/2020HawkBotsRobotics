@@ -90,7 +90,6 @@ public class RobotContainer {
     scissorLiftSubsystem.setDefaultCommand(
       new ArticulateScissorLift(
         scissorLiftSubsystem,
-        () -> driverController.getRawAxis(Constants.OIConstants.RIGHT_STICK_X_AXIS),
         () -> driverController.getRawAxis(Constants.OIConstants.RIGHT_STICK_Y_AXIS)
     ));
 

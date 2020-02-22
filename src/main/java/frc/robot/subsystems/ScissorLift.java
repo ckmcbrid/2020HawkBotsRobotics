@@ -13,11 +13,15 @@ public class ScissorLift extends SubsystemBase {
   }
 
   public void moveUp() {
-    motor.set(0.1);
+    motor.set(0.5);
   }
 
   public void moveDown() {
-    motor.set(-0.1);
+    motor.set(-0.5);
+  }
+
+  public void hold() {
+    motor.set(0.0);
   }
 
   @Override

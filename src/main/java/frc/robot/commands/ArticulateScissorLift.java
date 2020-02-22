@@ -9,18 +9,16 @@ public class ArticulateScissorLift extends CommandBase {
     @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
     
     private final ScissorLift scissorSubsystem;
-    private final DoubleSupplier moveDown;
-    private final DoubleSupplier moveUp;
+    private final DoubleSupplier move;
 
    /**
    * Creates a new ExampleCommand.
    *
    * @param subsystem The subsystem used by this command.
    */
-  public ArticulateScissorLift(ScissorLift subsystem, DoubleSupplier down, DoubleSupplier up) {
+  public ArticulateScissorLift(ScissorLift subsystem, DoubleSupplier upDown) {
     scissorSubsystem = subsystem;
-    moveDown = down;
-    moveUp = up;
+    move = upDown;
     addRequirements(subsystem);
   }
 
@@ -31,12 +29,13 @@ public class ArticulateScissorLift extends CommandBase {
 
     @Override
     public void execute() {
-      if (moveUp.getAsDouble() > 0) {
-        scissorSubsystem.moveUp();
-
-      } else if (moveDown.getAsDouble() > 0) {
+      if (move.getAsDouble() > 0) {
+          scissorSubsystem.moveUp();
+      } else if (move.getAsDouble() < 0) {
           scissorSubsystem.moveDown();
-      } 
+      } else { // No input
+          scissorSubsystem.hold();
+      }
     }
 
     // Called once the command ends or is interrupted.
